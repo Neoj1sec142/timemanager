@@ -10,7 +10,7 @@ class CategorySerializer(serializers.ModelSerializer):
         
 class TimeSerializer(serializers.ModelSerializer):
     cat = serializers.PrimaryKeyRelatedField(
-        queryset=Category.objects.all()
+        queryset=Category.objects.all(),
     )
     class Meta:
         model = TimeStamp

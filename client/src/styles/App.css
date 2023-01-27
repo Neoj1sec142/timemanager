@@ -1,0 +1,6 @@
+/* Footer Styles */
+.footer-container{
+    border: 2px solid rgb(0, 0, 0);
+    height: 40px;
+    background-color: rgb(148, 155, 157);
+}

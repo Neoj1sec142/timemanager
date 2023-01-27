@@ -26,7 +26,4 @@ class TimeDetail(generics.RetrieveUpdateDestroyAPIView):
 class TimeByCategory(generics.ListAPIView):
     serializer_class = TimeStamp
     permission_classes = (permissions.AllowAny,)
-    def get_queryset(self):
-        cat = self.kwargs['category_pk']
-        queryset = TimeStamp.objects.filter(cat=cat)
-        return queryset
+    lookup_field = 'cat'
