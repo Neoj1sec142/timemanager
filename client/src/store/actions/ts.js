@@ -101,8 +101,7 @@ export const destroy_ts = (id) => async dispatch => {
         const res = await RemoveTS(id)
         if(res.status === 200 || res.statusText === 'No Content'){
             dispatch({
-                type: REMOVE_TS_SUCCESS,
-                payload: res.data
+                type: REMOVE_TS_SUCCESS                
             })
             dispatch(setAlert('TS Removed Successfully', 'success'))
         }else{

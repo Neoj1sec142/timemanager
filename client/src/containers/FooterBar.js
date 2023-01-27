@@ -6,8 +6,8 @@ const FooterBar = () => {
         <nav className='d-flex justify-content-evenly mt-1'>
             <a href='/'>Home</a>
             <a href='/add-ts'>Add TS</a>
-            <a href='/'>Check Week</a>
-            <a href='/'>Check Graph</a>
+            <a href='/week'>Check Week</a>
+            <a href='/chart'>Check Graph</a>
         </nav>
     </div>
   )

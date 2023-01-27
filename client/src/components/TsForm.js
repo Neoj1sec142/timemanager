@@ -22,7 +22,7 @@ const TsForm = ({load_cats, upload_ts, categories}) => {
         msg: ''
     })
     const onChange = e => setFormData({...formData, [e.target.name]: e.target.value})
-    // const onSelect = e => setFormData({...formData, [e.target.name]: e.target.key})
+    
     const onSubmit = async e => {
         e.preventDefault()
         let cat_id;

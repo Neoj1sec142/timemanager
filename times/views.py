@@ -19,9 +19,9 @@ class TimeList(generics.ListCreateAPIView):
     permission_classes = (permissions.AllowAny,)
         
 class TimeDetail(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = (permissions.AllowAny, )
     queryset = TimeStamp.objects.all()
     serializer_class = TimeSerializer
-    permission_classes = (permissions.AllowAny,)
     
 class TimeByCategory(generics.ListAPIView):
     serializer_class = TimeStamp

@@ -41,6 +41,7 @@ export const CreateTS = async (ts) => {
 export const RemoveTS = async (id) => {
     try{
         const res = await Client.delete(`ts/${id}/`)
+        console.log(res, "SOURCE")
         return res
     } catch (err) {console.log(err)}
 }
