@@ -9,12 +9,10 @@ const getMinutes = (times) => {
         }
         timePairs.push(data)
     }
-    console.log(timePairs, "TIME PAIRS")
     return timePairs;
 }
 export const createColumns = (times, cats) => {
     const tps = getMinutes(times)
-    console.log(tps, "Top Create Cols Func")
     let columns = [];
     for(let i=0; i<cats.length; i++){
         var data = {
@@ -24,7 +22,6 @@ export const createColumns = (times, cats) => {
         }
         columns.push(data)
     }
-    console.log(columns, "Mid Create Cols Func")
     for(let j=0; j<columns.length; j++){
         for(let i=0; i<tps.length; i++){
             if(columns[j].id === tps[i].skill){
@@ -32,7 +29,6 @@ export const createColumns = (times, cats) => {
             }
         }
     }
-    console.log(columns, "End Create Cols Func")
     return columns;
 }
 

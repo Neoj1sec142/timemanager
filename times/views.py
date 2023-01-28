@@ -24,6 +24,6 @@ class TimeDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = TimeSerializer
     
 class TimeByCategory(generics.ListAPIView):
-    serializer_class = TimeStamp
+    serializer_class = TimeSerializer
     permission_classes = (permissions.AllowAny,)
     lookup_field = 'cat'

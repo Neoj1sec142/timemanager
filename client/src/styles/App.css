@@ -4,14 +4,26 @@
     height: 40px;
     background-color: rgb(148, 155, 157);
 }
-.app{
+html{
     width: 100vw;
     height: 100vh;
     bottom: 0;
     top: 0;
     left: 0;
     right: 0;
-    background-image: url('../assets/guy.jpeg');
+} 
+html, div, form{
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(81,81,92,1) 53%, rgba(30,57,62,1) 98%);
     background-repeat: no-repeat;
     background-size: cover;
+}
+.ft-link{
+    color:rgb(25, 217, 25);
+}
+.ft-link:hover{
+    color:rgb(163, 25, 217);
+}
+.dash-header{
+    margin-top: 20%;
 }

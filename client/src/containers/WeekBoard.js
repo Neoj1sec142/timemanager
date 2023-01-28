@@ -63,7 +63,7 @@ const WeekBoard = ({load_tss, destroy_ts, load_cats, tss, categories}) => {
         return (
             <div className='container-fluid'>
                 <div className='d-flex justify-content-center mt-3'>
-                    <div className='row w-75 border bg-light shadow-sm mt-3'>
+                    <div className='row w-75 border shadow-sm mt-3'>
                         <div className='row w-100 border bg-dark text-white shadow-lg m-1'>
                             <div className='float-start w-50 mt-2'>
                                 <p className='fs-2 text-center w-50 ms-2'>Weekly Work {totalTime ? 

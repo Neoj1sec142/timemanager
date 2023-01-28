@@ -89,7 +89,7 @@ const BarChart = ({load_tss, load_cats, tss, categories, width, height}) => {
     
     if(!loading && finished){
         return (
-            <div className='m-4 md:m-10 mt-24 p-10 bg-white dark:bg-secondary-dark-bg rounded-xl'>
+            <div className='m-4 md:m-10 mt-24 p-10 rounded-xl'>
             
             <ChartComponent id="area-chart"
                 height="420px"

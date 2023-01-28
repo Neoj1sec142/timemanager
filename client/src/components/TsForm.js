@@ -55,7 +55,7 @@ const TsForm = ({load_cats, upload_ts, categories}) => {
         return (
             <div className='container-fluid'>
                 <div className='d-flex justify-content-center mt-3'>
-                    <div className='row w-75 h-75 bg-light shadow-sm border mt-3 mb-3'>
+                    <div className='row w-75 h-75 shadow-sm border mt-3 mb-3'>
                         <form className='mt-2' onSubmit={e=>onSubmit(e)}>
                             <div className='form-group mt-1 mb-1'>
                                 <input className='form-control' type='number' onChange={e=>onChange(e)} name='hours' value={hours}  />

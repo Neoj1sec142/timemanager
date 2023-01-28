@@ -10,7 +10,7 @@ import WeekBoard from './containers/WeekBoard'
 
 const App = () => {
   return (
-    <div className='app w-100 h-100'>
+    <div className='app w-100 h-100 cb'>
       <Alert />
       <Routes>
         <Route path='/' element={<Dashboard />} />
