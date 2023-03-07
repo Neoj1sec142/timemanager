@@ -4,9 +4,8 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-django = "*"
-django-rest-framework = "*"
-django-cors-headers = "*"
+tk = "*"
+pyinstaller = "*"
 
 [dev-packages]
 
