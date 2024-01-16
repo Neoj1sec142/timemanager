@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ClockedTime } from 'src/app/models/clocked-time.model';
 import { ClockService } from 'src/app/services/clock.service';
 
@@ -15,7 +16,10 @@ export class MainDisplayComponent implements OnInit, OnDestroy {
   seconds: number = 0;
   private intervalId: any;
   
-  constructor(private clockSvc: ClockService) { }
+  constructor(
+    private clockSvc: ClockService,
+    private snack: MatSnackBar
+    ) { }
 
 
   ngOnInit(): void {
@@ -39,13 +43,23 @@ export class MainDisplayComponent implements OnInit, OnDestroy {
       clock_type: this.clocked
     }
     this.clockSvc.create(clock).subscribe((res: any) => {
+      const time = new Date()
       if(this.clocked === "IN"){
+        this.snack.open(`You have been clocked out ${time}`, 'Close', {
+          duration: 1500
+        })
+        this.stopStopwatch();
         this.clocked = "OUT";
       }else{
+        this.snack.open(`You have been clocked in ${time}`, 'Close', {
+          duration: 1500
+        })
         this.clocked = "IN";
+        this.startStopwatch();
       }
     })
   }
+
   isDateToday(dateInput: string): boolean {
     const inputDate = new Date(dateInput);
     const today = new Date();
