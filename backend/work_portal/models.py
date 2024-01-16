@@ -10,6 +10,7 @@ class PlatformChoices(models.TextChoices):
 class ClockedTime(models.Model):
     hours = models.IntegerField()
     minutes = models.IntegerField()
+    clock_type = models.CharField(max_length=50, default="IN")
     created_on = models.DateField(auto_now_add=True)
     
 class Reminder(models.Model):
