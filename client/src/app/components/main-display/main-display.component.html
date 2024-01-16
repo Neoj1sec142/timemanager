@@ -12,8 +12,8 @@
         <span class="time-display">{{ seconds | number: '2.0' }}</span>
       </div>
       <div class="buttons">
-        <button mat-raised-button class="start-button" (click)="startStopwatch()">Start</button>
-        <button mat-raised-button class="stop-button" (click)="stopStopwatch()">Stop</button>
+        <button mat-raised-button class="start-button" (click)="handleClock('IN')">Start</button>
+        <button mat-raised-button class="stop-button" (click)="handleClock('OUT')">Stop</button>
         <button mat-raised-button class="reset-button" (click)="resetStopwatch()">Reset</button>
       </div>
     </div> 

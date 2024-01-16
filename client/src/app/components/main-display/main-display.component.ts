@@ -36,27 +36,31 @@ export class MainDisplayComponent implements OnInit, OnDestroy {
       }
     })
   }
-  handleClock(){
+  handleClock(chk: string){
+    const time = new Date()
+    if(this.clocked === "IN"){
+      if(chk === "IN"){ return };
+      this.clocked = "OUT";
+      this.stopStopwatch();
+      this.snack.open(`You have been clocked out ${time}`, 'Close', {
+        duration: 1500
+      })
+    }else{
+      if(chk === "OUT"){ return };
+      this.clocked = "IN";
+      this.startStopwatch();
+      this.snack.open(`You have been clocked in ${time}`, 'Close', {
+        duration: 1500
+      })
+    }
+    
     const clock: ClockedTime = {
       hours: this.hours,
       minutes: this.minutes,
       clock_type: this.clocked
     }
     this.clockSvc.create(clock).subscribe((res: any) => {
-      const time = new Date()
-      if(this.clocked === "IN"){
-        this.snack.open(`You have been clocked out ${time}`, 'Close', {
-          duration: 1500
-        })
-        this.stopStopwatch();
-        this.clocked = "OUT";
-      }else{
-        this.snack.open(`You have been clocked in ${time}`, 'Close', {
-          duration: 1500
-        })
-        this.clocked = "IN";
-        this.startStopwatch();
-      }
+      console.log(res, "Success")
     })
   }
 
