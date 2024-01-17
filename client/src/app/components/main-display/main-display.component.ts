@@ -23,7 +23,7 @@ export class MainDisplayComponent implements OnInit, OnDestroy {
 
 
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    this.checkClockStatus()
   }
 
   checkClockStatus(){
@@ -36,32 +36,41 @@ export class MainDisplayComponent implements OnInit, OnDestroy {
       }
     })
   }
-  handleClock(chk: string){
-    const time = new Date()
-    if(this.clocked === "IN"){
-      if(chk === "IN"){ return };
-      this.clocked = "OUT";
-      this.stopStopwatch();
-      this.snack.open(`You have been clocked out ${time}`, 'Close', {
-        duration: 1500
-      })
-    }else{
-      if(chk === "OUT"){ return };
+  handleClock(clockAction: string): void {
+    const currentTime = new Date();
+  
+    if (this.clocked === clockAction) {
+      return; // No action if the current state is the same as the action
+    }
+  
+    if (clockAction === "IN") {
       this.clocked = "IN";
       this.startStopwatch();
-      this.snack.open(`You have been clocked in ${time}`, 'Close', {
-        duration: 1500
-      })
+      this.snack.open(`You have been clocked in ${currentTime}`, 'Close', { duration: 1500 });
+      const clock: ClockedTime = {
+        hours: 0, 
+        minutes: 0,
+        clock_type: this.clocked
+      };
+      this.postClockEvent(clock);
+    } else if (clockAction === "OUT") {
+      this.clocked = "OUT";
+      this.stopStopwatch();
+      this.snack.open(`You have been clocked out ${currentTime}`, 'Close', { duration: 1500 });
+      const clock: ClockedTime = {
+        hours: this.hours,
+        minutes: this.seconds >= 30 ? this.minutes + 1 : this.minutes,
+        clock_type: this.clocked
+      };
+      this.postClockEvent(clock);
+      this.resetStopwatch(); 
     }
-    
-    const clock: ClockedTime = {
-      hours: this.hours,
-      minutes: this.minutes,
-      clock_type: this.clocked
-    }
+  }
+  
+  private postClockEvent(clock: ClockedTime): void {
     this.clockSvc.create(clock).subscribe((res: any) => {
-      console.log(res, "Success")
-    })
+      console.log(res, "Success");
+    });
   }
 
   isDateToday(dateInput: string): boolean {
