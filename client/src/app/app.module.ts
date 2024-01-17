@@ -27,11 +27,15 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatListModule } from '@angular/material/list'
 import { MatTableModule } from '@angular/material/table'
 import { MainDisplayComponent } from './components/main-display/main-display.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { HoursTableComponent } from './components/hours-table/hours-table.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MainDisplayComponent
+    MainDisplayComponent,
+    HoursTableComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

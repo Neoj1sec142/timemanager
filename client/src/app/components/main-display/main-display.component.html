@@ -1,21 +1,14 @@
-<div class="container">
-    <mat-toolbar>
-      <button mat-button></button>
-      <button mat-button></button>
-      <button mat-button></button>
-    </mat-toolbar>
-    <div class="stopwatch-container">
-      <h1>Stopwatch</h1>
-      <div class="display">
-        <span class="time-display">{{ hours | number: '2.0' }}:</span>
-        <span class="time-display">{{ minutes | number: '2.0' }}:</span>
-        <span class="time-display">{{ seconds | number: '2.0' }}</span>
-      </div>
-      <div class="buttons">
-        <button mat-raised-button class="start-button" (click)="handleClock('IN')">Start</button>
-        <button mat-raised-button class="stop-button" (click)="handleClock('OUT')">Stop</button>
-        <button mat-raised-button class="reset-button" (click)="resetStopwatch()">Reset</button>
-      </div>
-    </div> 
+<div class="stopwatch-container">
+  <h1>Stopwatch</h1>
+  <div class="display">
+    <span class="time-display">{{ hours | number: '2.0' }}:</span>
+    <span class="time-display">{{ minutes | number: '2.0' }}:</span>
+    <span class="time-display">{{ seconds | number: '2.0' }}</span>
+  </div>
+  <div class="buttons">
+    <button mat-raised-button class="start-button" (click)="handleClock('IN')">Start</button>
+    <button mat-raised-button class="stop-button" (click)="handleClock('OUT')">Stop</button>
+    <button mat-raised-button class="reset-button" (click)="resetStopwatch()">Reset</button>
+  </div>
+</div> 
 
-</div>
