@@ -29,12 +29,14 @@ import { MatTableModule } from '@angular/material/table'
 import { MainDisplayComponent } from './components/main-display/main-display.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HoursTableComponent } from './components/hours-table/hours-table.component';
+import { ReminderModal } from './components/reminder-modal/reminder-modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainDisplayComponent,
     HoursTableComponent,
+    ReminderModal,
     NavbarComponent
   ],
   imports: [

@@ -19,6 +19,7 @@ class Reminder(models.Model):
     platform = models.TextField(choices=PlatformChoices.choices, default=PlatformChoices.ENVISIRAD)
     created_on = models.DateField(auto_now_add=True)
     severity = models.IntegerField()
+    remind_me = models.DateTimeField(null=True, blank=True)
     
 class MonthlyCheck(models.Model):
     amount = models.DecimalField(max_digits=10, decimal_places=2, default=0, blank=True, null=True)

@@ -3,6 +3,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ClockedTime } from 'src/app/models/clocked-time.model';
 import { ClockService } from 'src/app/services/clock.service';
 
+
 @Component({
   selector: 'app-main-display',
   templateUrl: './main-display.component.html',
@@ -26,6 +27,8 @@ export class MainDisplayComponent implements OnInit, OnDestroy {
     this.checkClockStatus()
   }
 
+  
+
   checkClockStatus(){
     this.clockSvc.getMostRecent().subscribe((res: ClockedTime) => {
       const inputD = res.created_on?.toString()
@@ -36,11 +39,11 @@ export class MainDisplayComponent implements OnInit, OnDestroy {
       }
     })
   }
-  handleClock(clockAction: string): void {
+  async handleClock(clockAction: string): Promise<void> {
     const currentTime = new Date();
   
     if (this.clocked === clockAction) {
-      return; // No action if the current state is the same as the action
+      return;
     }
   
     if (clockAction === "IN") {
@@ -52,7 +55,7 @@ export class MainDisplayComponent implements OnInit, OnDestroy {
         minutes: 0,
         clock_type: this.clocked
       };
-      this.postClockEvent(clock);
+      await this.postClockEvent(clock);
     } else if (clockAction === "OUT") {
       this.clocked = "OUT";
       this.stopStopwatch();
@@ -62,15 +65,18 @@ export class MainDisplayComponent implements OnInit, OnDestroy {
         minutes: this.seconds >= 30 ? this.minutes + 1 : this.minutes,
         clock_type: this.clocked
       };
-      this.postClockEvent(clock);
+      await this.postClockEvent(clock);
       this.resetStopwatch(); 
     }
   }
   
-  private postClockEvent(clock: ClockedTime): void {
-    this.clockSvc.create(clock).subscribe((res: any) => {
-      console.log(res, "Success");
-    });
+  private postClockEvent(clock: ClockedTime): Promise<void> {
+    return new Promise((resolve) => {
+      this.clockSvc.create(clock).subscribe((res: any) => {
+        console.log(res, "Success");
+        resolve(res);
+      });
+    })
   }
 
   isDateToday(dateInput: string): boolean {
