@@ -61,3 +61,29 @@
     background-color: #007bff;
   }
   
+
+.reminder-card{
+  background-color: rgb(235, 138, 12);
+  border-radius: 13px;
+  border: 2px solid black;
+}
+.reminder-card p{
+  padding-top: 5px;
+  text-align: center;
+  color: white;
+  font-size: 18px;
+}
+
+.bb{
+  margin: 3px;
+  border-radius: 20px;
+}
+#r{
+  background-color: red;
+}
+#y{
+  background-color: rgb(255, 230, 0);
+}
+#g{
+  background-color: rgb(20, 157, 22);
+}

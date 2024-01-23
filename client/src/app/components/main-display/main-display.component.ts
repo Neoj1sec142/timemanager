@@ -1,7 +1,13 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { forkJoin } from 'rxjs';
 import { ClockedTime } from 'src/app/models/clocked-time.model';
+import { Reminder } from 'src/app/models/reminder.model';
 import { ClockService } from 'src/app/services/clock.service';
+import { ReminderService } from 'src/app/services/reminder.service';
+import { ViewReminderComponent } from '../view-reminder/view-reminder.component';
+import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
 
 
 @Component({
@@ -10,7 +16,7 @@ import { ClockService } from 'src/app/services/clock.service';
   styleUrls: ['./main-display.component.css']
 })
 export class MainDisplayComponent implements OnInit, OnDestroy {
-  
+  reminders: Reminder[] = []; 
   clocked: string = "";
   hours: number = 0;
   minutes: number = 0;
@@ -18,27 +24,59 @@ export class MainDisplayComponent implements OnInit, OnDestroy {
   private intervalId: any;
   
   constructor(
+    private reminderSvc: ReminderService,
     private clockSvc: ClockService,
-    private snack: MatSnackBar
+    private snack: MatSnackBar,
+    private dialog: MatDialog,
     ) { }
 
 
   ngOnInit(): void {
-    this.checkClockStatus()
+    this.pageInit();
   }
-
   
-
-  checkClockStatus(){
-    this.clockSvc.getMostRecent().subscribe((res: ClockedTime) => {
-      const inputD = res.created_on?.toString()
+  
+  private pageInit(){
+    forkJoin([
+      this.clockSvc.getMostRecent(),
+      this.reminderSvc.getAll()
+    ]).subscribe(([recClock, reminders]) => {
+      const inputD = recClock.created_on?.toString()
       if(inputD !== undefined){
-        this.clocked = res.clock_type;
+        this.clocked = recClock.clock_type;
       }else{
         this.clocked = "OUT";
       }
+      this.reminders = reminders;
     })
   }
+  
+  deleteReminder(reminder: Reminder){
+    const dialogRef = this.dialog.open(ConfirmModalComponent, {data: "Are you sure you want to delete this reminder?", width: '450px'})
+    dialogRef.afterClosed().subscribe((result: boolean) => {
+      if(result && reminder.id){
+        const id = reminder.id;
+        this.reminderSvc.delete(id).subscribe(
+          (res: any) => {
+            this.snack.open(`Reminder Successfully Deleted`, 'Close', { duration: 1500 })    
+            this.reminders = this.reminders.filter(r => r.id != id);
+            
+          }, (error: any) => {
+            this.snack.open(`Error: ${error}`, 'Close', { duration: 1500 })    
+          })
+      }else{
+        this.snack.open(`Dialog Closed: ${result ? 'True' : 'False'}`, 'Close', { duration: 1500 })
+      }
+    })
+  }
+
+  viewReminder(reminder: Reminder){
+    const dialogRef = this.dialog.open(ViewReminderComponent, {data: reminder, width: '450px'})
+    dialogRef.afterClosed().subscribe(() => {
+      this.snack.open('Reminder not altered', 'Close', { duration: 1500 })
+    })
+  }
+  
   async handleClock(clockAction: string): Promise<void> {
     const currentTime = new Date();
   

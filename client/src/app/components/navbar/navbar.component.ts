@@ -25,11 +25,15 @@ export class NavbarComponent implements OnInit {
     const dialogRef = this.dialog.open(ReminderModal, {width: '400px'});
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed', result);
-      this.reminderSvc.create(result).subscribe((res: Reminder) => {
-        this.snack.open('Your Reminder has been scheduled', 'Close', { duration: 1500 });
-      }, (error: any) => {
-        this.snack.open(`Error: ${error}`, 'Close', { duration: 1500 });
-      })
+      if(result.title && result.title != ""){
+        this.reminderSvc.create(result).subscribe((res: Reminder) => {
+          this.snack.open('Your Reminder has been scheduled', 'Close', { duration: 1500 });
+        }, (error: any) => {
+          this.snack.open(`Error: ${error}`, 'Close', { duration: 1500 });
+        })
+      }else{
+        this.snack.open(`Modal close with res: ${result}`, 'Close', { duration: 1500 });
+      }
     });
   }
 

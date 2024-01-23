@@ -1,0 +1,7 @@
+<div class="card">
+  <h2 class="text-center">{{data.title}}</h2>
+  <article> {{data.description}} </article>
+  <p>{{data.platform}} | Severity: {{data.severity}}</p>
+  <p>{{data.created_on | date: 'mm/dd/yyyy'}}</p>
+  <button mat-raised-button (click)="onClose()">Close</button>
+</div>

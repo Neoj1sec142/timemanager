@@ -11,4 +11,12 @@
     <button mat-raised-button class="reset-button" (click)="resetStopwatch()">Reset</button>
   </div>
 </div> 
-
+<br />
+<div class="reminder-container" *ngIf="reminders.length > 0">
+  <h2 class="text-center">Reminders</h2>
+  <div class="reminder-card" *ngFor="let r of reminders">
+    <button class="float-start bb" id="g"(click)=viewReminder(r)><mat-icon>X</mat-icon></button>
+    <button class="float-end bb" id="r" (click)="deleteReminder(r)"><mat-icon>X</mat-icon></button>
+    <p>- &nbsp;{{r.title}}</p>
+  </div>
+</div>

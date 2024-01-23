@@ -30,6 +30,7 @@ import { MainDisplayComponent } from './components/main-display/main-display.com
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HoursTableComponent } from './components/hours-table/hours-table.component';
 import { ReminderModal } from './components/reminder-modal/reminder-modal.component';
+import { ViewReminderComponent } from './components/view-reminder/view-reminder.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { ReminderModal } from './components/reminder-modal/reminder-modal.compon
     MainDisplayComponent,
     HoursTableComponent,
     ReminderModal,
+    ViewReminderComponent,
     NavbarComponent
   ],
   imports: [
